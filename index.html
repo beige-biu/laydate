@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <title></title>
+    <script src="jquery-1.4.1.min.js"></script>
+    <script src="laydate/laydate.js"></script>
+    <script>
+
+      laydate.render({
+        elem: '#startTime',
+        type: 'date',
+        value: getRecentDay(-30),//默认值30天前
+        min: '2021-12-25',
+        max: getRecentDay(-3)
+      });
+      laydate.render({
+        elem: '#endTime',
+        type: 'date',
+        value: getRecentDay(-1),//默认值1天前
+        min: '2021-12-25',
+        max: getRecentDay()
+      });
+
+      function getRecentDay(day) {
+        var today = new Date();
+        var targetday_milliseconds = today.getTime() + 1000 * 60 * 60 * 24 * day;
+        today.setTime(targetday_milliseconds);
+        var tYear = today.getFullYear();
+        var tMonth = today.getMonth();
+        var tDate = today.getDate();
+        tMonth = doHandleMonth(tMonth + 1);
+        tDate = doHandleMonth(tDate);
+        return tYear + "-" + tMonth + "-" + tDate;
+      }
+      function doHandleMonth(month) {
+        var m = month;
+        if (month.toString().length == 1) {
+          m = "0" + month;
+        }
+        return m;
+      }
+
+
+
+
+      var endDate = getRecentDay(-1).toString();
+      // var startDate = getRecentDay(-30).toString();
+      // var today = getRecentDay(-0).toString();
+      // // alert(startDate);
+      // // alert(endDate);
+      // // alert(today);
+      //
+      //
+      //
+      //
+      //
+      // var now = new Date() ;
+      //
+      // var nowYear = now.getFullYear() ; //年
+      // var nowMonth = now.getMonth()+1<10?"0"+(now.getMonth()+1):now.getMonth() ; //月
+      // var nowDay = now.getDate()<10?"0"+now.getDate():now.getDate() ; //日期
+      //
+      // var nowHour = now.getHours()<10?"0"+now.getHours():now.getHours() ; //时
+      // var nowMinute = now.getMinutes()<10?"0"+now.getMinutes():now.getMinutes() ; //分
+      //
+      // var nowDate = nowYear+"-"+nowMonth+"-"+nowDay ;
+      // var nowTime = nowHour+":"+nowMinute;
+      //
+      // $("#nowDate").val(nowDate) ;
+
+
+
+
+
+
+
+
+    </script>
+
+<body>
+<!--<label style="font-size:14px;width:70px;margin-left:10px">开始日期:</label>-->
+<!--<input type="text" name="startTime" id="startTime" placeholder="选择开始时间" autocomplete="off" style="width:80px !important">-->
+<!--<label style="font-size:14px;width:70px;margin-left:10px">结束日期:</label>-->
+<!--<input type="text" name="endTime" id="endTime" placeholder="选择结束时间" autocomplete="off" style="width:80px !important">-->
+<!--<br>-->
+<label style="font-size:14px;width:70px;margin-left:10px">开始日期:</label>
+<input type="date" name="startDate" id="startDate"  autocomplete="off" value="2022-01-25">
+<label style="font-size:14px;width:70px;margin-left:10px">结束日期:</label>
+<input type="date" name="endDate" id="endDate"  autocomplete="off" value="2022-02-25">
+<input type="date" id="test">
+<!--<br>-->
+<!--<label style="font-size:14px;width:70px;margin-left:10px">开始日期:</label>-->
+<!--<input  type="date"  id="bt" >-->
+<!--<br>-->
+<!--<input type="date" id="nowDate"/>-->
+<script>
+
+    $("#test").val(endDate);
+</script>
+</body>
+</html>
